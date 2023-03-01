@@ -16,17 +16,21 @@ const convertCostToPoints = (cost) => {
 const sumTransactions = (arr) => {
     const transactionMap = {}
     arr.forEach(transaction => {
+        let month = new Date(transaction.purchaseDateTime).getMonth();
         if(transactionMap[transaction.id] === undefined) {
             transactionMap[transaction.id] = {
-                tList: [], 
-                points: 0
+                tList: []
             }
+        }
+        if(transactionMap[transaction.id][month] === undefined) {
+            transactionMap[transaction.id][month] = 0
         }
         // find a better way to map this - maybe set it up as some kind of array instead
         transactionMap[transaction.id] = {
+            ...transactionMap[transaction.id],
             tList: [...transactionMap[transaction.id].tList, transaction],
             // add points formula conditionals to this
-            points: transactionMap[transaction.id].points + convertCostToPoints(transaction.cost)
+            [month]: transactionMap[transaction.id][month] + convertCostToPoints(transaction.cost)
         }
     })
     return Object.values(transactionMap)

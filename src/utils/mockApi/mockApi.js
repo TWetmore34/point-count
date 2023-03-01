@@ -5,10 +5,10 @@
 // }
 // returns transaction[]
 const transactions = [
-    {id: 0, cost: 102, purchaseDateTime: new Date().setFullYear(2023, 1, 1)},
-    {id: 1, cost: 98, purchaseDateTime: new Date().setFullYear(2023, 1, 1)},
-    {id: 1, cost: 198, purchaseDateTime: new Date().setFullYear(2023, 1, 1)},
-    {id: 0, cost: 48, purchaseDateTime: new Date().setFullYear(2023, 1, 1)},
+    {id: 0, cost: 102, purchaseDateTime: new Date().setFullYear(2023, -1, 1)},
+    {id: 1, cost: 98, purchaseDateTime: new Date().setFullYear(2023, -1, 1)},
+    {id: 1, cost: 198, purchaseDateTime: new Date().setFullYear(2023, 0, 1)},
+    {id: 0, cost: 48, purchaseDateTime: new Date().setFullYear(2023, 0, 1)},
     {id: 0, cost: 125, purchaseDateTime: new Date().setFullYear(2023, 1, 1)},
     {id: 0, cost: 92, purchaseDateTime: new Date().setFullYear(2023, 1, 1)},
     {id: 1, cost: 120, purchaseDateTime: new Date().setFullYear(2023, 1, 1)},

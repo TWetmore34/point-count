@@ -1,30 +1,35 @@
 import './App.css'
 import useTransactions from './utils/hooks/useTransactions';
-import {useState} from "react"
+import {useState, useRef} from "react"
+const lastThreeMonths = (curMonth) => {
+  let arr = []
+  for(let i = 1; i <= 3; i++) {
+    const newDate = new Date()
+    newDate.setMonth(curMonth - i)
+
+    arr.push(newDate.getMonth())
+  }
+  return arr
+}
 function App() {
     const [transactions] = useTransactions()
-    const [filters, setFilters] = useState([])
-    const handleFilter = (e) => {
-      setFilters([...filters, e.target.id])
-    }
-    const handleReset = () => {
-      setFilters([])
-    }
+    const {current: readOnlyDate} = useRef(new Date())
   return (
     <div className="App">
-      filters
-      {filters.map(filter => {
-        return <p key={filter}>user {filter}</p>
-      })}
-      <button onClick={handleReset}>Reset</button>
       <ul>
         {transactions.map(el => {
-          if(filters.includes(`${el.tList[0].id}`)) {
-            return null
-          }
-          return (
-          <li data-testid="list-el" onClick={handleFilter} id={el.tList[0].id} key={el.tList[0].id}>
-          user {el.tList[0].id} has {el.points} points
+          let [one, two, three] = lastThreeMonths(readOnlyDate.getMonth())
+          return (<li key={el.tList[0].id}>
+            user {el.tList[0].id}
+            <div>
+              Month {one + 1}: {el[one] || 0}
+            </div>
+            <div>
+              Month {two + 1}: {el[two] || 0}
+            </div>
+            <div>
+              Month {three + 1}: {el[three] || 0}
+            </div>
           </li>)
         })}
       </ul>
