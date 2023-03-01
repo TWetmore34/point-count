@@ -1,16 +1,8 @@
 import './App.css'
 import useTransactions from './utils/hooks/useTransactions';
-import {useState, useRef} from "react"
-const lastThreeMonths = (curMonth) => {
-  let arr = []
-  for(let i = 1; i <= 3; i++) {
-    const newDate = new Date()
-    newDate.setMonth(curMonth - i)
+import {useRef} from "react"
+import {lastThreeMonths} from "./utils/utils"
 
-    arr.push(newDate.getMonth())
-  }
-  return arr
-}
 function App() {
     const [transactions] = useTransactions()
     const {current: readOnlyDate} = useRef(new Date())
@@ -19,18 +11,27 @@ function App() {
       <ul className='flex'>
         {transactions.map(el => {
           let [one, two, three] = lastThreeMonths(readOnlyDate.getMonth())
-          return (<li className='flex-child' key={el.tList[0].id}>
+          return (
+          <li className='flex-child' key={el.tList[0].id}>
             user {el.tList[0].id}
             <div>
-              Month {one + 1}: {el[one] || 0}
+              <p>
+                Month {one + 1}: {el[one] || 0}
+              </p>
             </div>
             <div>
-              Month {two + 1}: {el[two] || 0}
+              <p>
+                Month {two + 1}: {el[two] || 0}
+              </p>
             </div>
             <div>
-              Month {three + 1}: {el[three] || 0}
+              <p>
+                Month {three + 1}: {el[three] || 0}
+              </p>
             </div>
-            total: {el.points}
+            <p>
+              total: {el.points}
+            </p>
           </li>)
         })}
       </ul>

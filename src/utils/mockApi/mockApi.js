@@ -12,7 +12,8 @@ const transactions = [
     {id: 0, cost: 125, purchaseDateTime: new Date().setFullYear(2023, 1, 1)},
     {id: 0, cost: 92, purchaseDateTime: new Date().setFullYear(2023, 1, 1)},
     {id: 1, cost: 120, purchaseDateTime: new Date().setFullYear(2023, 1, 1)},
-    {id: 3, cost: 120, purchaseDateTime: new Date().setFullYear(2023, 1, 1)}
+    {id: 3, cost: 120, purchaseDateTime: new Date().setFullYear(2023, 1, 1)},
+    {id: 3, cost: 120, purchaseDateTime: new Date().setFullYear(2023, -2, 1)}
 ]
 // testing basics => promise should only ever res as of now (NOTE: change this later, but not a huge deal rn)
 // ms should always be between 0 and 3000
