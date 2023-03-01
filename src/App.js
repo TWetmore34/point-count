@@ -16,10 +16,10 @@ function App() {
     const {current: readOnlyDate} = useRef(new Date())
   return (
     <div className="App">
-      <ul>
+      <ul className='flex'>
         {transactions.map(el => {
           let [one, two, three] = lastThreeMonths(readOnlyDate.getMonth())
-          return (<li key={el.tList[0].id}>
+          return (<li className='flex-child' key={el.tList[0].id}>
             user {el.tList[0].id}
             <div>
               Month {one + 1}: {el[one] || 0}
@@ -30,6 +30,7 @@ function App() {
             <div>
               Month {three + 1}: {el[three] || 0}
             </div>
+            total: {el.points}
           </li>)
         })}
       </ul>

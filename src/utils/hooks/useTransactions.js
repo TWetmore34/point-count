@@ -19,7 +19,8 @@ const sumTransactions = (arr) => {
         let month = new Date(transaction.purchaseDateTime).getMonth();
         if(transactionMap[transaction.id] === undefined) {
             transactionMap[transaction.id] = {
-                tList: []
+                tList: [],
+                points: 0
             }
         }
         if(transactionMap[transaction.id][month] === undefined) {
@@ -29,6 +30,7 @@ const sumTransactions = (arr) => {
         transactionMap[transaction.id] = {
             ...transactionMap[transaction.id],
             tList: [...transactionMap[transaction.id].tList, transaction],
+            points: transactionMap[transaction.id].points + convertCostToPoints(transaction.cost),
             // add points formula conditionals to this
             [month]: transactionMap[transaction.id][month] + convertCostToPoints(transaction.cost)
         }
